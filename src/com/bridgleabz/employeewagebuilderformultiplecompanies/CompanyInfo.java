@@ -1,5 +1,11 @@
 package com.bridgleabz.employeewagebuilderformultiplecompanies;
 
+interface IEmployeeWage {
+    public void addCompanyInfo(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth);
+
+    public void computeEmpWage();
+}
+
 public class CompanyInfo {
     private String companyName;
     private int empRatePerHr;
@@ -13,6 +19,7 @@ public class CompanyInfo {
         this.numOfWorkingDays = numOfWorkingDays;
         this.maxHrsPerMonth = maxHrsPerMonth;
     }
+
     public void setTotalWage(int totalWage) {
         this.totalWage = totalWage;
     }

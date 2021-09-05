@@ -1,6 +1,6 @@
 package com.bridgleabz.employeewagebuilderformultiplecompanies;
 
-public class EmployeeWage {
+ class EmployeeWage implements IEmployeeWage {
     public static final int IS_FULL_TIME = 1;
     public static final int IS_PART_TIME = 2;
     private int numOfCompany = 0;
@@ -10,12 +10,12 @@ public class EmployeeWage {
         companyInfoArray = new CompanyInfo[3];
     }
 
-    private void addCompanyInfo(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
+    public void addCompanyInfo(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
         companyInfoArray[numOfCompany] = new CompanyInfo(companyName, empRatePerHr, numOfWorkingDays, maxHrsPerMonth);
         numOfCompany++;
     }
 
-    private void computeEmpWage() {
+    public void computeEmpWage() {
         for (int i = 0; i < numOfCompany; i++) {
             companyInfoArray[i].setTotalWage(this.computeEmpWage(companyInfoArray[i]));
             System.out.println(companyInfoArray[i]);
