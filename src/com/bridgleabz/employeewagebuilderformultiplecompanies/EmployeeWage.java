@@ -1,21 +1,22 @@
 package com.bridgleabz.employeewagebuilderformultiplecompanies;
 
-public class EmployeeWage {
+public class EmployeeWage implements IEmployeeWageComputation {
     public static final int IS_FULL_TIME = 1;
     public static final int IS_PART_TIME = 2;
     private int numOfCompany = 0;
     private CompanyInfo[] companyInfoArray;
 
-    public EmployeeWage() {
-        companyInfoArray = new CompanyInfo[3];
-    }
-
-    private void addCompanyInfo(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
+    public void addCompanyInfo(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
         companyInfoArray[numOfCompany] = new CompanyInfo(companyName, empRatePerHr, numOfWorkingDays, maxHrsPerMonth);
         numOfCompany++;
     }
 
-    private void computeEmpWage() {
+    public EmployeeWage() {
+        companyInfoArray = new CompanyInfo[3];
+    }
+
+
+    public void computeEmpWage() {
         for (int i = 0; i < numOfCompany; i++) {
             companyInfoArray[i].setTotalWage(this.computeEmpWage(companyInfoArray[i]));
             System.out.println(companyInfoArray[i]);
@@ -47,12 +48,13 @@ public class EmployeeWage {
         }
         return totalWage;
     }
+
     public static void main(String[] args) {
-        EmployeeWage employeeWage = new EmployeeWage();
-        employeeWage.addCompanyInfo("Dmart", 20, 20, 100);
-        employeeWage.addCompanyInfo("JIO", 25, 22, 110);
-        employeeWage.addCompanyInfo("Airtel", 27, 26, 120);
-        employeeWage.computeEmpWage();
+        IEmployeeWageComputation employeeWage = new EmployeeWage();
+        ((EmployeeWage) employeeWage).addCompanyInfo("Dmart", 20, 20, 100);
+        ((EmployeeWage) employeeWage).addCompanyInfo("JIO", 25, 22, 110);
+        ((EmployeeWage) employeeWage).addCompanyInfo("Airtel", 27, 26, 120);
+        ((EmployeeWage) employeeWage).computeEmpWage();
 
     }
 }
